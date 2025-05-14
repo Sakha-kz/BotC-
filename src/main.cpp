@@ -1,7 +1,7 @@
 #include <tgbot/tgbot.h>
 
 int main() {
-    TgBot::Bot bot("7647645162:AAGp089P3bqtu1wSz7C-y2lMU2aEMD76oAI");
+    TgBot::Bot bot("T");
     bot.getEvents().onCommand("start", [&bot](TgBot::Message::Ptr message) {
         bot.getApi().sendMessage(message->chat->id, "Привет, я бот!");
     });
