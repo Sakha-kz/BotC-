@@ -1,20 +1,13 @@
-#include <tgbot/tgbot.h>
+#include "BotCore.h"
 
 int main() {
-    TgBot::Bot bot("T");
-    bot.getEvents().onCommand("start", [&bot](TgBot::Message::Ptr message) {
-        bot.getApi().sendMessage(message->chat->id, "Привет, я бот!");
-    });
-
-    try {
-        printf("Бот запущен...\n");
-        bot.getApi().deleteWebhook();
-        TgBot::TgLongPoll longPoll(bot);
-        while (true) {
-            longPoll.start();
-        }
-    } catch (const std::exception& e) {
-        printf("Ошибка: %s\n", e.what());
+    const char* token="7647645162:AAGp089P3bqtu1wSz7C-y2lMU2aEMD76oAI";
+    if (!token) {
+        std::cerr<<"Error: переменная TELEGRAM_TOKEN не установлена."<<'\n';
+        return 1;
     }
+
+    BotCore bot(token);
+    bot.run();
     return 0;
 }
